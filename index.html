@@ -32,7 +32,42 @@
                 <p>No</p>
             </section>
         </section>
-        <button type="button" class="btn-add-book" id="btn-add-book">+New Book</button>
+
+        <button type="button" class="btn-add-book" id="btn-add-book" popovertarget="add-book-input">+New Book</button>
+        <dialog id="add-book-input" popover="auto">
+            <h2>Add new book</h2>
+            <form action="#" method="POST">
+                <fieldset>
+                    <div>
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div>
+                        <label for="author">Author</label>
+                        <input type="text" id="author" name="author" required\>
+                    </div>
+                    <div>
+                        <label for="genre">Pages</label>
+                        <input type="text" id="genre" name="genre" required\>
+                    </div>
+                      <div>
+                        <label for="pages">Pages</label>
+                        <input type="number" id="pages" name="pages" step="1" required\>
+                    </div>
+                    <div>
+                        <label for="read-book">Did you read the book?</label>
+                        <select name="read" id="read-book" required>
+                            <option value="" disabled selected hidden>Please select...</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+
+                    </div>
+                </fieldset>
+            </form>
+            <button popovertarget="add-book-input" popovertargetaction="hide">Cancel</button>
+        </dialog>
+
     </div>
 </body>
 </html>
