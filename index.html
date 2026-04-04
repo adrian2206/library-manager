@@ -33,10 +33,10 @@
             </section>
         </section>
 
-        <button type="button" class="btn-add-book" id="btn-add-book" popovertarget="add-book-input">+New Book</button>
-        <dialog id="add-book-input" popover="auto">
+        <button type="button" class="btn-add-book" id="btn-add-book">+New Book</button>
+        <dialog id="add-book-input">
             <h2>Add new book</h2>
-            <form action="#" method="POST">
+            <form>
                 <fieldset>
                     <div>
                         <label for="title">Title</label>
@@ -47,12 +47,12 @@
                         <input type="text" id="author" name="author" required\>
                     </div>
                     <div>
-                        <label for="genre">Pages</label>
+                        <label for="genre">Genre</label>
                         <input type="text" id="genre" name="genre" required\>
                     </div>
                       <div>
                         <label for="pages">Pages</label>
-                        <input type="number" id="pages" name="pages" step="1" required\>
+                        <input type="number" id="pages" name="pages" min="1" step="1" required\>
                     </div>
                     <div>
                         <label for="read-book">Did you read the book?</label>
@@ -64,8 +64,9 @@
 
                     </div>
                 </fieldset>
+                <button class="btn" type="button" value="cancel" id="add-book-input-cancel" formmethod="dialog">Cancel</button>
+                <button class="btn" type="submit" value="default" id="add-book-input-submit" disabled>Add</button>
             </form>
-            <button popovertarget="add-book-input" popovertargetaction="hide">Cancel</button>
         </dialog>
 
     </div>

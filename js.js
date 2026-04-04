@@ -16,7 +16,7 @@ function Book(title, author, genre, pages,read) {
     this.read = read;
 }
 
-function addBookToLibrary(title, author, genre, pages,read) {  
+function addBookToLibrary(title, author, genre, pages, read) {  
     myLibrary.push(new Book(title, author, genre, pages,read));
 }
 
@@ -46,3 +46,42 @@ function displayLibrary() {
         display.append(newSection);
     }
 }
+
+const modal = document.querySelector(`#add-book-input`);
+const showModal = document.querySelector(`#btn-add-book`);
+const modalForm = modal.querySelector(`form`);
+const closeModal = modal.querySelector(`#add-book-input-cancel`);
+const submitModal = modal.querySelector(`#add-book-input-submit`);
+
+showModal.addEventListener(`click`, () => {
+    modal.showModal();
+});
+
+closeModal.addEventListener(`click`, () => {
+    modalForm.reset();
+    modal.close();
+    submitModal.disabled = true;
+});
+
+modalForm.addEventListener(`input`, () => {
+    if(modalForm.checkValidity()) {
+        submitModal.disabled = false;
+    } else {
+        submitModal.disabled = true;
+    }
+} );
+
+modalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = modalForm.querySelector('#title').value;
+    const author = modalForm.querySelector('#author').value;
+    const genre = modalForm.querySelector('#genre').value;
+    const pages = modalForm.querySelector('#pages').value;
+    const read = modalForm.querySelector('#read-book').value;
+
+    addBookToLibrary(title, author, genre, pages, read);
+    displayLibrary();
+
+    modalForm.reset();
+    modal.close();
+});
