@@ -47,11 +47,12 @@ body {
     width: fit-content;
     justify-self: center;
     gap: var(--space-s);
+    position: relative;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto;
     grid-auto-rows: 50px;
     justify-self: center;
     margin-top: var(--space-s);
@@ -64,10 +65,26 @@ body {
 .book,
 .column-head {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr) 30px;
     align-items: center;
     justify-items: center;
     column-gap: var(--space-xs);
+}
+
+.btn-remove {
+  padding: 1px 2px;
+  border: none;
+  background: white;
+  color: #2563eb;
+  font-weight: 500;
+  font-size: var(--step-minus-1);
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-remove:hover,
+.btn-remove:focus {
+    transform: scale(1.2);
 }
 
 .column-head {
@@ -97,10 +114,89 @@ body {
     cursor: pointer;
     padding: var(--space-s);
     border: none;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                background-color 0.2s ease,
+                box-shadow 0.2s ease;
 }
 
 .btn-add-book:focus,
 .btn-add-book:hover {
     background-color: var(--btn-hover-clr);
-    transform: scale(0.95);
+    transform: translateY(-3px) scale(1.02);
+}
+
+#add-book-input {
+    position: absolute;
+    top: var(--space-m);
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: 400px;
+    border-radius: 6px;
+}
+
+#add-book-input::backdrop {
+    background-color: rgba(10, 25, 60, 0.4);
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-items: center;
+    padding: var(--space-xs);
+}
+
+#add-book-input h2 {
+    font-size: var(--step-1);
+    line-height: 1.2;
+}
+
+.modal-content form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+}
+
+.btn-cancel {
+    padding: 10px 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: transparent;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-weight: 500;
+    font-size: var(--step-minus-1);
+}
+
+.btn-cancel:hover,
+.btn-cancel:focus {
+  background: #f3f4f6;
+}
+
+.btn-add {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-weight: 500;
+  font-size: var(--step-minus-1);
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-add:hover,
+.btn-add:focus {
+  background: #1d4ed8;
+}
+
+.btn-add:disabled {
+  background: #93c5fd;
+  opacity: 0.6;
+  cursor: not-allowed;
 }

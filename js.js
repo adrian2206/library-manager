@@ -1,7 +1,4 @@
-const myLibrary = [
-    { id: "a3f9b2c1-1234-4d56-8901-abcdef123456", title: "The Hobbit", author: "J.R.R. Tolkien", genre: "Fantasy", pages: 310, read: 'Yes' },
-    { id: "c1e3f5a7-9012-4b34-5678-123456abcdef", title: "Dune", author: "Frank Herbert", genre: "Sci-Fi", pages: 412, read: 'No' },
-];
+const myLibrary = [];
 
 function Book(title, author, genre, pages,read) {
      if (!new.target) {
@@ -20,31 +17,39 @@ function addBookToLibrary(title, author, genre, pages, read) {
     myLibrary.push(new Book(title, author, genre, pages,read));
 }
 
-function displayLibrary() {
-    for(let i = 0; i < myLibrary.length; i++ ) {
-        const display = document.querySelector('#display');
+function displayBook(book) {
+    const display = document.querySelector('#display');
 
-        const newSection = document.createElement('section');
-        newSection.classList.add('book');
+    const newSection = document.createElement('section');
+    newSection.classList.add('book');
 
-        const title = document.createElement('p');
-        title.textContent = `${myLibrary[i].title}`;
+    const title = document.createElement('p');
+    title.textContent = book.title;
 
-        const author = document.createElement('p');
-        author.textContent = `${myLibrary[i].author}`;
+    const author = document.createElement('p');
+    author.textContent = book.author;
 
-        const genre = document.createElement('p');
-        genre.textContent = `${myLibrary[i].genre}`;
+    const genre = document.createElement('p');
+    genre.textContent = book.genre;
 
-        const pages = document.createElement('p');
-        pages.textContent = `${myLibrary[i].pages}`;
+    const pages = document.createElement('p');
+    pages.textContent = book.pages;
 
-        const read = document.createElement('p');
-        read.textContent = `${myLibrary[i].read}`;
+    const read = document.createElement('p');
+    read.textContent = book.read ? 'Yes' : 'No';
 
-        newSection.append(title, author, genre, pages, read);
-        display.append(newSection);
-    }
+    const remove = document.createElement('button');
+    remove.classList.add('btn-remove');
+    remove.textContent = 'X';
+
+    remove.addEventListener('click', () => {
+        const bookIndex = myLibrary.findIndex(b => b.id === book.id);
+        myLibrary.splice(bookIndex, 1);
+        newSection.remove();
+    });
+
+    newSection.append(title, author, genre, pages, read, remove);
+    display.append(newSection);
 }
 
 const modal = document.querySelector(`#add-book-input`);
@@ -55,6 +60,12 @@ const submitModal = modal.querySelector(`#add-book-input-submit`);
 
 showModal.addEventListener(`click`, () => {
     modal.showModal();
+});
+
+modal.addEventListener('close', () => {
+    modalForm.reset();
+    modal.close();
+    submitModal.disabled = true;
 });
 
 closeModal.addEventListener(`click`, () => {
@@ -80,7 +91,7 @@ modalForm.addEventListener('submit', (e) => {
     const read = modalForm.querySelector('#read-book').value;
 
     addBookToLibrary(title, author, genre, pages, read);
-    displayLibrary();
+    displayBook(myLibrary[myLibrary.length - 1]);
 
     modalForm.reset();
     modal.close();

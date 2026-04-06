@@ -23,50 +23,47 @@
                 <p>Fantasy</p>
                 <p>310</p>
                 <p>Yes</p>
-            </section>
-            <section class="book">
-                <p>Dune</p>
-                <p>Frank Herbert</p>
-                <p>Sci-Fi</p>
-                <p>412</p>
-                <p>No</p>
+                <button class="btn-remove">X</button>
             </section>
         </section>
 
         <button type="button" class="btn-add-book" id="btn-add-book">+New Book</button>
         <dialog id="add-book-input">
-            <h2>Add new book</h2>
-            <form>
-                <fieldset>
+            <div class="modal-content">
+                <h2>Add new book</h2>
+                <form>
+                    <fieldset>
+                        <div>
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div>
+                            <label for="author">Author</label>
+                            <input type="text" id="author" name="author" required\>
+                        </div>
+                        <div>
+                            <label for="genre">Genre</label>
+                            <input type="text" id="genre" name="genre" required\>
+                        </div>
+                          <div>
+                            <label for="pages">Pages</label>
+                            <input type="number" id="pages" name="pages" min="1" step="1" required\>
+                        </div>
+                        <div>
+                            <label for="read-book">Did you read the book?</label>
+                            <select name="read" id="read-book" required>
+                                <option value="" disabled selected hidden>Please select...</option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                    </fieldset>
                     <div>
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" required>
+                        <button class="btn-cancel" type="button" value="cancel" id="add-book-input-cancel" formmethod="dialog">Cancel</button>
+                        <button class="btn-add" type="submit" value="default" id="add-book-input-submit" disabled>Add</button>
                     </div>
-                    <div>
-                        <label for="author">Author</label>
-                        <input type="text" id="author" name="author" required\>
-                    </div>
-                    <div>
-                        <label for="genre">Genre</label>
-                        <input type="text" id="genre" name="genre" required\>
-                    </div>
-                      <div>
-                        <label for="pages">Pages</label>
-                        <input type="number" id="pages" name="pages" min="1" step="1" required\>
-                    </div>
-                    <div>
-                        <label for="read-book">Did you read the book?</label>
-                        <select name="read" id="read-book" required>
-                            <option value="" disabled selected hidden>Please select...</option>
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
-                        </select>
-
-                    </div>
-                </fieldset>
-                <button class="btn" type="button" value="cancel" id="add-book-input-cancel" formmethod="dialog">Cancel</button>
-                <button class="btn" type="submit" value="default" id="add-book-input-submit" disabled>Add</button>
-            </form>
+                </form>
+            </div>
         </dialog>
 
     </div>
