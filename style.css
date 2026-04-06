@@ -156,9 +156,12 @@ body {
 }
 
 .modal-content form {
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
+    align-content: space-between;
+    padding-top: var(--space-xs);
 }
 
 .btn-cancel {
@@ -199,4 +202,52 @@ body {
   background: #93c5fd;
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.modal-content label {
+    font-size: var(--step-minus-1);
+}
+
+fieldset {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    gap: var(--space-xs);
+    padding: 0;
+}
+
+fieldset div {
+    display: grid;
+}
+
+fieldset div:last-child {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    justify-items: left;
+    gap: var(--space-s);
+    line-height: 1;
+}
+
+input[type='text'] {
+    border: 0.5px solid rgba(128, 128, 128, 0.288);
+    max-width: 50%;
+    border-radius: 6px;
+}
+
+input[type='number'] {
+    border: 0.5px solid rgba(128, 128, 128, 0.288);
+    max-width: 10%;
+    border-radius: 6px;
+}
+
+option {
+    font-size: var(--step-minus-2);
+}
+
+select {
+    transform: translateY(1px);
+    border: 0.5px solid rgba(128, 128, 128, 0.288);
+    border-radius: 6px;
 }
