@@ -13,7 +13,9 @@ function Book(title, author, genre, pages,read) {
     this.read = read;
 }
 
-Book.prototype.switchReadStatus = function() {}
+Book.prototype.switchReadStatus = function() {
+    this.read = !this.read;
+}
 
 function addBookToLibrary(title, author, genre, pages, read) {  
     myLibrary.push(new Book(title, author, genre, pages,read));
@@ -37,8 +39,21 @@ function displayBook(book) {
     const pages = document.createElement('p');
     pages.textContent = book.pages;
 
-    const read = document.createElement('p');
-    read.textContent = book.read ? 'Yes' : 'No';
+    const read = document.createElement('select');
+    read.classList.add('update-read');
+    const optYes = document.createElement('option');
+    optYes.classList.add('update-read-option');
+    optYes.value = 'true';
+    optYes.textContent = 'Yes';
+    const optNo = document.createElement('option');
+    optNo.classList.add('update-read-option');
+    optNo.value = 'false';
+    optNo.textContent = 'No';
+    read.append(optYes, optNo);   
+    read.value = book.read ? 'true' : 'false';
+    read.addEventListener('change', () => {
+    book.read = read.value === 'true';
+    });
 
     const remove = document.createElement('button');
     remove.classList.add('btn-remove');
