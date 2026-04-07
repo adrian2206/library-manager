@@ -13,6 +13,8 @@ function Book(title, author, genre, pages,read) {
     this.read = read;
 }
 
+Book.prototype.switchReadStatus = function() {}
+
 function addBookToLibrary(title, author, genre, pages, read) {  
     myLibrary.push(new Book(title, author, genre, pages,read));
 }
@@ -88,7 +90,7 @@ modalForm.addEventListener('submit', (e) => {
     const author = modalForm.querySelector('#author').value;
     const genre = modalForm.querySelector('#genre').value;
     const pages = modalForm.querySelector('#pages').value;
-    const read = modalForm.querySelector('#read-book').value;
+    const read = modalForm.querySelector('#read-book').value === 'true';
 
     addBookToLibrary(title, author, genre, pages, read);
     displayBook(myLibrary[myLibrary.length - 1]);
